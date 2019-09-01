@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-printer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
