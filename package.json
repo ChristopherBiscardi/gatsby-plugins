@@ -5,8 +5,14 @@
   "private": true,
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
-  "publish-ci": "lerna publish -y",
+  "scripts": {
+    "publish-ci": "lerna publish -y",
+    "test": "echo 1"
+  }
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "lerna": "^3.16.4"
+  }
 }
