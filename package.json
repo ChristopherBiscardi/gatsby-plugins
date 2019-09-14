@@ -6,7 +6,7 @@
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
   "scripts": {
-    "publish-ci": "lerna publish -y",
+    "publish-ci": "lerna publish from-package -y",
     "test": "echo 1"
   },
   "workspaces": [
