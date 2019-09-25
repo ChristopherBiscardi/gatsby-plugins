@@ -31,7 +31,6 @@ const genCodeBundle = async ({
     plugins: [
       resolve(),
       babel({
-        exclude: "**/node_modules/**",
         presets: ["babel-preset-gatsby"],
         plugins: ["babel-plugin-preval"]
       }),
