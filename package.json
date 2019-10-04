@@ -13,6 +13,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "@changesets/cli": "^2.0.3",
     "lerna": "^3.16.4"
   }
 }
