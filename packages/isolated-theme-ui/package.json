@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "theme-ui": "^0.2.43"
+  }
 }
