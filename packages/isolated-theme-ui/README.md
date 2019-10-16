@@ -23,24 +23,81 @@ TODO:
 
 ## Usage
 
-This is a brief, non-optimal usage. Typically it would be good to move the provider out of this file into a `wrapRootElement` and file it can be imported from on it's own to allow other user to consume it. This illustrates the point though
+Create `src/context.js` in your theme. This file will bootstrap our context and two pragmas. (Note: once you understand this example, you can change this file name or do this anywhere.)
 
 ```js
 /** @jsx jsx */
 import React from "react";
-import { pragma } from "isolated-theme-ui";
-import theme from "../theme";
-const MyThemeContext = React.createContext(theme);
-const jsx = pragma(MyThemeContext);
+import { jsxPragma, mdxPragma } from "isolated-theme-ui";
 
-export default props => (
-  <h1
-    sx={{
-      color: "primary",
-      fontFamily: "heading"
+export const MyThemeContext = React.createContext({
+  theme: {},
+  components: {}
+});
+
+// our custom pragmas, bootstrapped with our context
+export const jsx = jsxPragma(MyThemeContext);
+export const mdx = mdxPragma(MyThemeContext);
+```
+
+Then use it in `wrapRootElement` to set the tokens and any components in your context. These are the tokens and context that will be applied when you use the `sx` prop or pass the `mdx` pragma to `MDXRenderer`.
+
+`theme` here could be `import { deep } from 'theme-ui/presets'`, but we put it in a different file so that users can shadow it with their own theme later on.
+
+```js
+import React from "react";
+import { MyThemeContext, jsx } from "./src/context";
+import theme from "./src/theme";
+
+export const wrapRootElement = ({ element }) => (
+  <MyThemeContext.Provider
+    value={{
+      theme,
+      components: {
+        h1: props =>
+          jsx(
+            "h1",
+            { ...props, sx: { color: "primary" } },
+            `h1 from theme B` + props.children
+          )
+      }
     }}
   >
-    Hello from A
-  </h1>
+    {element}
+  </MyThemeContext.Provider>
 );
+```
+
+Usage of the bootstrapped jsx and mdx pragmas looks like this. You can use each independently or together, as seen in this page template. Using the `mdx` pragma is passing it into `MDXRenderer`. To use `sx` you need to use the pragma declaration `/** @jsx jsx */` and the import.
+
+```js
+/** @jsx jsx */
+import { graphql } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import { jsx, mdx } from "../context";
+
+export default ({ data }) => (
+  <div>
+    <h1
+      sx={{
+        color: "primary"
+      }}
+    >
+      {data.mdx.frontmatter.title}
+    </h1>
+    <MDXRenderer scope={{ mdx }}>{data.mdx.body}</MDXRenderer>
+  </div>
+);
+
+export const query = graphql`
+  query ThemeBQuery($id: String!) {
+    mdx(id: { eq: $id }) {
+      id
+      frontmatter {
+        title
+      }
+      body
+    }
+  }
+`;
 ```
