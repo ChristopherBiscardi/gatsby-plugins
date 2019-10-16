@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "publish-ci": "lerna publish from-package -y",
-    "changeset": "yarn changeset",
+    "changeset": "changeset",
     "test": "echo 1"
   },
   "workspaces": [
