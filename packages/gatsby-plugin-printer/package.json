@@ -4,6 +4,11 @@
   "main": "index.js",
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChristopherBiscardi/gatsby-plugins.git",
+    "directory": "packages/gatsby-plugin-printer"
+  },
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
