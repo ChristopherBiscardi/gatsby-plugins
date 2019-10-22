@@ -4,6 +4,11 @@
   "main": "index.js",
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChristopherBiscardi/gatsby-plugins.git",
+    "directory": "packages/isolated-theme-ui"
+  },
   "peerDependencies": {
     "theme-ui": "^0.2.43"
   }
