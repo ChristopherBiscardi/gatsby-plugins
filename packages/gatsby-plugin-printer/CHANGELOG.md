@@ -1,5 +1,11 @@
 # gatsby-plugin-printer
 
+## 1.0.7
+
+### Patch Changes
+
+- 385cb47: Showing off changesets for the workshop
+
 ## 1.0.6
 
 ### Patch Changes
