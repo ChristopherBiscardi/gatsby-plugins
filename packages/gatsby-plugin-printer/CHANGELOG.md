@@ -1,5 +1,11 @@
 # gatsby-plugin-printer
 
+## 1.0.8
+
+### Patch Changes
+
+- 05ce444: Explicitly specify babel rollup settings so as to not break builds
+
 ## 1.0.7
 
 ### Patch Changes
