@@ -32,7 +32,8 @@ const genCodeBundle = async ({
       resolve(),
       babel({
         presets: ["babel-preset-gatsby"],
-        plugins: ["babel-plugin-preval"]
+        plugins: ["babel-plugin-preval"],
+        runtimeHelpers: true
       }),
       commonjs({
         namedExports: {
