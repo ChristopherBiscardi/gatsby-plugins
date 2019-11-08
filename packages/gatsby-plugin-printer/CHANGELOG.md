@@ -1,5 +1,11 @@
 # gatsby-plugin-printer
 
+## 1.1.0
+
+### Minor Changes
+
+- ae02184: Upgrade major version of puppeteer
+
 ## 1.0.8
 
 ### Patch Changes
