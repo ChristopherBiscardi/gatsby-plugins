@@ -209,6 +209,7 @@ exports.onPostBuild = async ({ graphql, reporter }, pluginOptions) => {
           codeBlocks
           collection {
             content
+            slug
           }
         }
       }
@@ -224,6 +225,7 @@ exports.onPostBuild = async ({ graphql, reporter }, pluginOptions) => {
     ({ codeBlocks, collection, title, ...json }) => {
       return {
         ...json,
+        collectionSlug: `/devtips/${collection.slug}`,
         images: codeBlocks.map((_, i) =>
           path.join(
             "/devtip-images",
