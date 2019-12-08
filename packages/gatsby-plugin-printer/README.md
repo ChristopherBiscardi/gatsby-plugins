@@ -5,13 +5,13 @@
 This is a declarative API that lets the library control batching, caching, etc. Creating `Printer` nodes via this API doesn't give you a `fileName` back, so you would have to specify one.
 
 ```js
-import { createPrinterNode } from "gatsby-plugin-printer";
+const { createPrinterNode } = require(`gatsby-plugin-printer`);
 
 exports.onCreateNode = ({ actions, node }) => {
   if (node.internal.type === "Mdx") {
     // createPrinterNode creates an object that can be passed in
     // to `createNode`
-    const printerNode = createPrinterNode({
+    createPrinterNode({
       id: node.id,
       // fileName is something you can use in opengraph images, etc
       fileName: slugify(node.title),
