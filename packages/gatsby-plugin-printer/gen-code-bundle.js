@@ -8,6 +8,7 @@ const builtins = require("rollup-plugin-node-builtins");
 const globals = require("rollup-plugin-node-globals");
 const babel = require("rollup-plugin-babel");
 const fs = require("fs-extra");
+const path = require("path");
 const debug = require("debug")("gatsby-plugin-printer:gen-code-bundle");
 
 const genCodeBundle = async ({
