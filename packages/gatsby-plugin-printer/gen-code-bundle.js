@@ -31,7 +31,7 @@ const genCodeBundle = async ({
   // if we have node_modules in the path, find it and drop everything before it
   // and let normal resolution take over
   const nodeModIndex = componentPathArray.findIndex(text => text === 'node_modules')
-  const relComponentPathArray = nodeModIndex > 0 ? componentPathArray.slice(nodeModIndex) : componentPathArray
+  const relComponentPathArray = nodeModIndex > 0 ? componentPathArray.slice(nodeModIndex + 1) : componentPathArray
   const relComponentPath = relComponentPathArray.join('/')
   // bundle an instance of the application, using the user's component
   const bundle = await rollup.rollup({
