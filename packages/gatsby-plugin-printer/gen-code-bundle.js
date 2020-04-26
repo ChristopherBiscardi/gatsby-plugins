@@ -8,6 +8,7 @@ const builtins = require("rollup-plugin-node-builtins");
 const globals = require("rollup-plugin-node-globals");
 const babel = require("rollup-plugin-babel");
 const fs = require("fs-extra");
+const path = require("path");
 const debug = require("debug")("gatsby-plugin-printer:gen-code-bundle");
 
 const genCodeBundle = async ({
@@ -25,6 +26,13 @@ const genCodeBundle = async ({
       `gatsby-plugin-printer expected a file at \`${componentPath}\`, but none was found. ${absWarning}`
     );
   }
+  // windows node fs expects a folder separator \ but imports in components need /
+  const componentPathArray = componentPath.split(path.sep)
+  // if we have node_modules in the path, find it and drop everything before it
+  // and let normal resolution take over
+  const nodeModIndex = componentPathArray.findIndex(text => text === 'node_modules')
+  const relComponentPathArray = nodeModIndex > 0 ? componentPathArray.slice(nodeModIndex + 1) : componentPathArray
+  const relComponentPath = relComponentPathArray.join('/')
   // bundle an instance of the application, using the user's component
   const bundle = await rollup.rollup({
     input: require.resolve("./app.js"),
@@ -43,7 +51,7 @@ const genCodeBundle = async ({
       }),
       replace({
         "process.env.NODE_ENV": JSON.stringify("production"),
-        __USER_COMPONENT_PATH__: componentPath
+        __USER_COMPONENT_PATH__: relComponentPath
       }),
       builtins(),
       globals()
