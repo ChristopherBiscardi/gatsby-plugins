@@ -1,5 +1,11 @@
 # gatsby-plugin-printer
 
+## 1.1.1
+
+### Patch Changes
+
+- 9fbb6e6: fix support for windows (#25) [originally in c28e64f, forgot changeset]
+
 ## 1.1.0
 
 ### Minor Changes
